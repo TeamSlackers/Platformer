@@ -12,10 +12,12 @@ public class CoinPickup : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        FindObjectOfType<GameSession>().AddToScore(pointsValue);
+        if (collision is CapsuleCollider2D)
+        {
+            Destroy(gameObject);
+            FindObjectOfType<GameSession>().AddToScore(pointsValue);
 
-        AudioSource.PlayClipAtPoint(coinPickupSFX, Camera.main.transform.position);
-
-        Destroy(gameObject);
+            AudioSource.PlayClipAtPoint(coinPickupSFX, Camera.main.transform.position);
+        }
     }
 }

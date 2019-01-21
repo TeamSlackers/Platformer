@@ -11,9 +11,30 @@ public class LevelExit : MonoBehaviour {
     [SerializeField]
     float slowMotionFactor = 0.2f;
 
+    [SerializeField]
+    int scoreRequirement = 0;
+
+    [SerializeField]
+    Sprite unlockedSprite;
+
+    private bool isUnlocked = false;
+
+    private void Update()
+    {
+        int currScore = FindObjectOfType<GameSession>().GetPlayerScore();
+        if (scoreRequirement <= currScore)
+        {
+            GetComponent<SpriteRenderer>().sprite = unlockedSprite;
+            isUnlocked = true;
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        StartCoroutine(LoadNextLevel());
+        if (isUnlocked)
+        {
+            StartCoroutine(LoadNextLevel());
+        }
     }
 
     IEnumerator LoadNextLevel()
