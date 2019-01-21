@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour {
         Run();
         FlipSprite();
         Jump();
-        Interact();
+        //Interact();
         Die();
     }
 
@@ -71,14 +71,14 @@ public class PlayerController : MonoBehaviour {
         animator.SetInteger("VerticalVelocity", verticalVelocity);
     }
 
-    private void Interact()
-    {
-        if (feet.IsTouchingLayers(LayerMask.GetMask("Interactables")) 
-            && CrossPlatformInputManager.GetButtonDown("Interact"))
-        {
-            Debug.Log("such interaction, much wow");
-        }
-    }
+    //private void Interact()
+    //{
+    //    if (feet.IsTouchingLayers(LayerMask.GetMask("Interactables")) 
+    //        && CrossPlatformInputManager.GetButtonDown("Interact"))
+    //    {
+    //        Debug.Log("such interaction, much wow");
+    //    }
+    //}
 
     private void Die()
     {
