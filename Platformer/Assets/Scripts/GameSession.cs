@@ -46,6 +46,11 @@ public class GameSession : MonoBehaviour {
         scoreText.text = playerScore.ToString();
     }
 
+    public int GetPlayerScore()
+    {
+        return playerScore;
+    }
+
     public void ProcessPlayerDeath()
     {
         if (playerLives > 1)

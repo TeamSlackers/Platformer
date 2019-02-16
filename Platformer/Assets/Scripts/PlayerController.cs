@@ -42,6 +42,7 @@ public class PlayerController : MonoBehaviour {
         Run();
         FlipSprite();
         Jump();
+        //Interact();
         Die();
     }
 
@@ -58,27 +59,26 @@ public class PlayerController : MonoBehaviour {
 
     private void Jump()
     {
-        //if ()
-        //{
-        //    return;
-        //}
-
-        if (feet.IsTouchingLayers(LayerMask.GetMask("Ground")) &&
-            CrossPlatformInputManager.GetButtonDown("Jump") )
+        if (feet.IsTouchingLayers(LayerMask.GetMask("Ground")) 
+            && CrossPlatformInputManager.GetButtonDown("Jump") )
         {
             Vector2 jumpVelocityToAdd = new Vector2(0f, jumpForce);
             rb.velocity += jumpVelocityToAdd;
         }
 
-        if (rb.velocity.y != 0)
-        {
-            print(rb.velocity.y);
-        }
-
         //animate jumping
-        bool isJumping = Mathf.Abs(rb.velocity.y) > 1;
-        animator.SetBool("isJumping", isJumping);
+        int verticalVelocity = (int)rb.velocity.y;
+        animator.SetInteger("VerticalVelocity", verticalVelocity);
     }
+
+    //private void Interact()
+    //{
+    //    if (feet.IsTouchingLayers(LayerMask.GetMask("Interactables")) 
+    //        && CrossPlatformInputManager.GetButtonDown("Interact"))
+    //    {
+    //        Debug.Log("such interaction, much wow");
+    //    }
+    //}
 
     private void Die()
     {
